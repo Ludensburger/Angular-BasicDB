@@ -1,0 +1,30 @@
+<div id="ov-container">
+  <div id="overlay" *ngIf="loading">Loading...</div>
+  <button (click)="getMovies()">Get Movie Summary Listing</button>
+  <div *ngIf="errorMessage" class="error error-text">
+    {{ errorMessage | json }}
+  </div>
+  <br />
+  <table id="movie-list" *ngIf="showMovieList">
+    <thead>
+      <tr>
+        <th>Movie ID</th>
+        <th>Movie Title</th>
+        <th>Movie Running Time</th>
+        <th>Release Date</th>
+        <th>Language</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movieData of movieCollection">
+        <td>{{ movieData.mov_id }}</td>
+        <td>{{ movieData.mov_title }}</td>
+        <td>{{ movieData.mov_time + " minutes" }}</td>
+        <td>
+          {{ movieData.mov_dt_rel ? movieData.mov_dt_rel : "None specified" }}
+        </td>
+        <td>{{ movieData.mov_lang }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
